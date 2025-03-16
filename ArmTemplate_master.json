@@ -1,0 +1,126 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "factoryName": {
+            "type": "string",
+            "metadata": "Data Factory name",
+            "defaultValue": "olist-datafac"
+        },
+        "from_filessSQL_db_password": {
+            "type": "secureString",
+            "metadata": "Secure string for 'password' of 'from_filessSQL_db'"
+        },
+        "CopyFromLinkedToBronze_accountKey": {
+            "type": "secureString",
+            "metadata": "Secure string for 'accountKey' of 'CopyFromLinkedToBronze'"
+        },
+        "SQLToBronzeLinkedService_accountKey": {
+            "type": "secureString",
+            "metadata": "Secure string for 'accountKey' of 'SQLToBronzeLinkedService'"
+        },
+        "ForJsonParsing_accountKey": {
+            "type": "secureString",
+            "metadata": "Secure string for 'accountKey' of 'ForJsonParsing'"
+        },
+        "from_filessSQL_db_properties_typeProperties_server": {
+            "type": "string",
+            "defaultValue": "chnep.h.filess.io"
+        },
+        "from_filessSQL_db_properties_typeProperties_database": {
+            "type": "string",
+            "defaultValue": "Ecomproject_automobile"
+        },
+        "from_filessSQL_db_properties_typeProperties_username": {
+            "type": "string",
+            "defaultValue": "Ecomproject_automobile"
+        },
+        "FromGit_properties_typeProperties_url": {
+            "type": "string",
+            "defaultValue": "https://raw.githubusercontent.com/"
+        },
+        "CopyFromLinkedToBronze_properties_typeProperties_url": {
+            "type": "string",
+            "defaultValue": "https://ecomstorageacc1.dfs.core.windows.net/"
+        },
+        "SQLToBronzeLinkedService_properties_typeProperties_url": {
+            "type": "string",
+            "defaultValue": "https://ecomstorageacc1.dfs.core.windows.net/"
+        },
+        "ForJsonParsing_properties_typeProperties_url": {
+            "type": "string",
+            "defaultValue": "https://ecomstorageacc1.dfs.core.windows.net/"
+        },
+        "http_from_github_properties_typeProperties_url": {
+            "type": "string",
+            "defaultValue": "https://raw.githubusercontent.com/"
+        },
+        "containerUri": {
+            "type": "string",
+            "metadata": "URI to storage account containing linked ARM templates"
+        },
+        "containerSasToken": {
+            "type": "string",
+            "metadata": "Sas token to storage account containing linked ARM templates"
+        }
+    },
+    "variables": {
+        "factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+    },
+    "resources": [
+        {
+            "name": "olist-datafac_ArmTemplate_0",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2024-03-01",
+            "properties": {
+                "mode": "incremental",
+                "templateLink": {
+                    "uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "factoryName": {
+                        "value": "[parameters('factoryName')]"
+                    },
+                    "from_filessSQL_db_password": {
+                        "value": "[parameters('from_filessSQL_db_password')]"
+                    },
+                    "CopyFromLinkedToBronze_accountKey": {
+                        "value": "[parameters('CopyFromLinkedToBronze_accountKey')]"
+                    },
+                    "SQLToBronzeLinkedService_accountKey": {
+                        "value": "[parameters('SQLToBronzeLinkedService_accountKey')]"
+                    },
+                    "ForJsonParsing_accountKey": {
+                        "value": "[parameters('ForJsonParsing_accountKey')]"
+                    },
+                    "from_filessSQL_db_properties_typeProperties_server": {
+                        "value": "[parameters('from_filessSQL_db_properties_typeProperties_server')]"
+                    },
+                    "from_filessSQL_db_properties_typeProperties_database": {
+                        "value": "[parameters('from_filessSQL_db_properties_typeProperties_database')]"
+                    },
+                    "from_filessSQL_db_properties_typeProperties_username": {
+                        "value": "[parameters('from_filessSQL_db_properties_typeProperties_username')]"
+                    },
+                    "FromGit_properties_typeProperties_url": {
+                        "value": "[parameters('FromGit_properties_typeProperties_url')]"
+                    },
+                    "CopyFromLinkedToBronze_properties_typeProperties_url": {
+                        "value": "[parameters('CopyFromLinkedToBronze_properties_typeProperties_url')]"
+                    },
+                    "SQLToBronzeLinkedService_properties_typeProperties_url": {
+                        "value": "[parameters('SQLToBronzeLinkedService_properties_typeProperties_url')]"
+                    },
+                    "ForJsonParsing_properties_typeProperties_url": {
+                        "value": "[parameters('ForJsonParsing_properties_typeProperties_url')]"
+                    },
+                    "http_from_github_properties_typeProperties_url": {
+                        "value": "[parameters('http_from_github_properties_typeProperties_url')]"
+                    }
+                }
+            },
+            "dependsOn": []
+        }
+    ]
+}
